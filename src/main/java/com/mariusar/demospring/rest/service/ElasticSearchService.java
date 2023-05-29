@@ -1,8 +1,8 @@
 package com.mariusar.demospring.rest.service;
 
-import com.mariusar.demospring.elastic.content.ElasticFieldValuePair;
+import com.mariusar.demospring.elastic.ElasticCrudRepository;
 import com.mariusar.demospring.elastic.content.AppContent;
-import com.mariusar.demospring.infrastructure.ElasticCrudRepositoryImpl;
+import com.mariusar.demospring.elastic.content.ElasticFieldValuePair;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ElasticSearchService {
 
-    private final ElasticCrudRepositoryImpl<AppContent> elasticCrudRepository;
+    private final ElasticCrudRepository<AppContent> elasticCrudRepository;
 
     public List<AppContent> searchApps(String keywords) {
         return elasticCrudRepository.searchAppContent(buildFieldValuesPairs(List.of("code", "description"), keywords));

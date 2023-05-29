@@ -14,14 +14,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 @AllArgsConstructor
+@Repository
 public class ElasticCrudRepositoryImpl<T extends Content> implements ElasticCrudRepository<T> {
 
     private final RequestFactory<T> requestFactory;
 
     private final ElasticsearchClient elasticsearchClient;
 
+    @Override
     public List<AppContent> searchAppContent(List<ElasticFieldValuePair> fieldValuesPairs) {
         SearchRequest request = requestFactory.searchBoolWildcardQuery(ElasticIndexEnum.APP, fieldValuesPairs);
         List<AppContent> results = null;
